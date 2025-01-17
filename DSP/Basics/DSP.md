@@ -31,6 +31,8 @@ Is the process of converting a continuous signal into a discrete-time signal.
 
 ![alt text](image-6.png)
 
+![alt text](image-20.png)
+
 ## What is a Transform in DSP?
 A transform in DSP is a mathematical tool that helps analyze and manipulate signals by converting them into a different domain (like from time to frequency).
 
@@ -138,3 +140,20 @@ For discrete signals, the Z-transform is the counterpart to the Laplace Transfor
 
 ![alt text](image-12.png)
 
+# Basics to kmow
+### Types of signals
+![alt text](image-13.png)
+![alt text](image-14.png)
+-----
+## Convolution
+
+![alt text](image-15.png)
+---
+
+![alt text](image-16.png)
+
+![alt text](image-17.png)
+
+![alt text](image-18.png)
+
+![alt text](image-19.png)
