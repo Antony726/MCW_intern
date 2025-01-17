@@ -10,7 +10,7 @@
 </h2>
 
 <h2 style="text-align: center;">
-    SIMDI : 
+    SIMD : 
     <a href="https://ftp.cvut.cz/kernel/people/geoff/cell/ps3-linux-docs/CellProgrammingTutorial/BasicsOfSIMDProgramming.html" 
        style="border: 2px solid grey; border-radius: 5px; padding: 3px; text-decoration: none;">
         <img src="aa.png" style="height: 15px;"> 
