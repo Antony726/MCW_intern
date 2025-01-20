@@ -140,7 +140,7 @@ For discrete signals, the Z-transform is the counterpart to the Laplace Transfor
 
 ![alt text](image-12.png)
 
-# Basics to kmow
+# Basics to know
 ### Types of signals
 ![alt text](image-13.png)
 ![alt text](image-14.png)
