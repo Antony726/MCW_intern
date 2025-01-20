@@ -89,9 +89,8 @@ This architecture makes the streaming engine a critical component for achieving 
 
 
 # C7x Daatatype
-
 Scalar Type<br>
-Vector Type
+Vector Type<br>
 
 ![alt text](image-4.png)
 
