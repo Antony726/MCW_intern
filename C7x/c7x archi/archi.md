@@ -79,7 +79,15 @@ The streaming engine is ideal for data-intensive applications like:
 - **Telecommunications:** Streamlining data flow in signal processing pipelines.
 
 This architecture makes the streaming engine a critical component for achieving high computational efficiency in modern embedded and DSP platforms.
-
+----
+# Address Generator Unit
+- It calcuates address used by the CPU to access Main Memory
+- It is an execution unit inside CPU
+- It operates parallel with CPU which reduces the cpu cycle by reducing the number of instructions and increasing the performance of the CPU
+- This helps to calculate the memory address of the data that is required by the CPU
+- This address generation calculation requires more math related calculations
+- Some CPUs have multiple Address Generator Unit to calculate more number of address at same time.
+----
 
 # Functional Unit
 ![alt text](image-2.png)
