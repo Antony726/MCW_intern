@@ -115,14 +115,14 @@ void mattrans(int32_t r, int32_t c){
             res[i][j]=0;
         }
     }
-    cout<<"leo";
+    
     for(int32_t i=0; i<r; i++){
         for(int32_t j=0; j<c; j++){
             cout<<"dass";
             res[i][j]=j+i;
         }
     }
-    cout<<"TVK";
+    
     for(int32_t i=0;i<r;i++){
         for(int32_t j=0; j<i; j++){
             int32_t temp = res[j][i];
