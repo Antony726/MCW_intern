@@ -5,6 +5,9 @@
 using namespace c7x;
 using namespace std;
 
+/*------------------------------------------------------------------------------------------------------------
+For More Details reffer the scalar.md file
+---------------------------------------------------------------------------------------------------------------*/
 void add(int32_t a, int32_t b){
     int32_t c = a+b;
     cout<<"The Sum is :"<<c;
@@ -109,18 +112,21 @@ void matmul(){
     }
 }
 void mattrans(int32_t r, int32_t c){
-    int res[r][c];
+    int32_t res[r][c];
+    int32_t count=0;
+    cout<<"\n";
     for(int32_t i=0; i<r; i++){
         for(int32_t j=0; j<c; j++){
-            res[i][j]=0;
+            res[i][j]=count;
+            count++;
         }
     }
     
     for(int32_t i=0; i<r; i++){
         for(int32_t j=0; j<c; j++){
-            cout<<"dass";
-            res[i][j]=j+i;
+            cout<<res[i][j]<<" | ";
         }
+        cout<<"\n";
     }
     
     for(int32_t i=0;i<r;i++){
@@ -130,6 +136,7 @@ void mattrans(int32_t r, int32_t c){
             res[i][j]=temp;
         }
     }
+    cout<<"Output \n";
     for(int32_t i=0; i<r; i++){
         for(int32_t j=0; j<c; j++){
             cout<<res[i][j]<<" | ";
