@@ -5,7 +5,7 @@
 
 # Code
 ## 1 : Scalar ADD
-```
+```cpp
 void add(int32_t a, int32_t b){
     int32_t c = a+b;
     cout<<"The Sum is :"<<c;
@@ -16,7 +16,7 @@ void add(int32_t a, int32_t b){
 ![alt text](image/image-3.png)
 
 ## 2 : Scalar SUB
-```
+```cpp
 void sub(int32_t a, int32_t b){
     int32_t c = a-b;
     cout<<"The Diff is :"<<c;
@@ -27,7 +27,7 @@ void sub(int32_t a, int32_t b){
 ![alt text](image/image-5.png)
 
 ## 3 and 4: Mul and div
-```
+```cpp
 void mul(int32_t a, int32_t b){
     int32_t c = a*b;
     cout<<"The Mul is :"<<c;
@@ -40,7 +40,7 @@ void divd(int32_t a, int32_t b){
 }
 ```
 ## 5: Matrix Addition (Scalar Array)
-```
+```cpp
 void matadd(){
     cout<<"Enter rows and column";
     int32_t r,c;
@@ -76,7 +76,7 @@ void matadd(){
 ![alt text](image/image-6.png)
 
 ## 6 : Marix Multiplication
-```
+```cpp
 void matmul(){
     cout<<"Enter number of Rows and columns for A:";
     int32_t r1,c1;
@@ -135,7 +135,8 @@ void matmul(){
 ![alt text](image/image-7.png)
 
 ## 7: Matrix Transpose
-```void mattrans(int32_t r, int32_t c){
+```cpp
+void mattrans(int32_t r, int32_t c){
     int32_t res[r][c];
     int32_t count=0;
     cout<<"\n";
