@@ -165,6 +165,7 @@ int main(){
         paddinpt(row,column,depth,img,padded,pad);
     }
     else{
+  
         for(int i=0;i<depth;i++){
             for(int j=0;j<row;j++){
                 for(int k=0; k<column; k++){

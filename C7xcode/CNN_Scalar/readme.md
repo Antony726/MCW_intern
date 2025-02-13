@@ -27,15 +27,18 @@ void inp(int32_t r, int32_t c, int32_t ch,int32_t*** img){
 
 ## Generate kernel
 ```cpp
-void filt(int32_t r, int32_t c, int32_t ch,int32_t*** filter){
+void filt(int32_t r, int32_t c, int32_t ch,int32_t chann,int32_t**** filter){
     int32_t count =1;
-    for(int i=0;i<ch;i++){
-        for(int j=0; j<r; j++){
-            for(int k=0; k<c; k++){
-                filter[i][j][k] = count++;
+    for(int p=0;p<ch;p++){
+        for(int i=0;i<chann;i++){
+            for(int j=0; j<r; j++){
+                for(int k=0; k<c; k++){
+                    filter[p][i][j][k] = count++;
+                }
             }
         }
     }
+    
 
 }
 ```
@@ -73,22 +76,29 @@ int32_t outsizec(int32_t r, int32_t c, int32_t ch, int32_t p, int32_t st, int32_
     sizec = ((c-ks+(2*p))/st)+1;
     return sizec;
 }
+int32_t outsizedc(int32_t r, int32_t c, int32_t depth, int32_t p, int32_t st, int32_t ks){
+    int32_t sizec =0;
+    sizec = ((depth-ks+(2*p))/st)+1;
+    return sizec;
+}
 ```
 ## My CNN function
 ```cpp
-void myconv(int32_t ch, int32_t r_s, int32_t c_s, int32_t k, int32_t st, int32_t p, int32_t r,int32_t co, int32_t*** padded, int32_t*** img, int32_t*** cnn, int32_t*** filter, int32_t k_c){
+void myconv(int32_t ch, int32_t r_s, int32_t c_s, int32_t k, int32_t st, int32_t p, int32_t r,int32_t co, int32_t*** padded, int32_t*** img, int32_t*** cnn, int32_t**** filter, int32_t k_c,int32_t depth){
     for(int32_t c=0; c<k_c; c++){
         for(int32_t cc=0; cc<r_s; cc++){
             for(int32_t i=0; i<c_s; i++){
-                for(int32_t j=0; j<ch; j++){
-                    for(int32_t m=0; m<k; m++){
-                        for(int32_t n=0; n<k; n++){
-                            if((m+i*st) >= (r+2*p) || (n+j*st) >= (co+2*p)){
-                                continue;
+                for(int32_t j=0; j<depth; j++){
+                    // for(int32_t d=0; d<ch; d++){
+                        for(int32_t m=0; m<k; m++){
+                            for(int32_t n=0; n<k; n++){
+                                if((m+i*st) >= (r+2*p) || (n+j*st) >= (co+2*p)){
+                                    continue;
+                                }
+                                cnn[c][cc][i] += padded[j][m+cc*st][n+i*st]*filter[c][j][m][n];
                             }
-                            cnn[c][cc][i] += padded[j][m+cc*st][n+i*st]*filter[c][m][n];
                         }
-                    }
+                    
                 }
             }
         }
@@ -104,11 +114,13 @@ void myconv(int32_t ch, int32_t r_s, int32_t c_s, int32_t k, int32_t st, int32_t
     cin>>row;
     cout<<"Enter Number of columns";
     cin>>column;
-    cout<<"Enter Number of Channel";
+    cout<<"Enter Number of Depth";
+    cin>>depth;
+    cout<<"Enter in channel";
     cin>>channel;
     cout<<"Enter Kernel size";
     cin>>kernel;
-    cout<<"Enter channel for kernel";
+    cout<<"Enter out channel";
     cin>>k_c;
     cout<<"Enter Padding size";
     cin>>pad;
@@ -126,11 +138,14 @@ int32_t*** img = new int32_t**[channel];
         }
     }
 
-    int32_t*** filter = new int32_t**[k_c];
-    for (int i = 0; i < k_c; i++) {
-        filter[i] = new int32_t*[kernel];
-        for (int j = 0; j < kernel; j++) {
-            filter[i][j] = new int32_t[kernel];
+    int32_t**** filter = new int32_t***[k_c];
+    for (int k = 0; k < k_c; k++) {
+        filter[k] = new int32_t**[channel];
+        for (int i = 0; i < channel; i++) {
+            filter[k][i] = new int32_t*[kernel];
+            for (int j = 0; j < kernel; j++) {
+                filter[k][i][j] = new int32_t[kernel];
+            }
         }
     }
 
