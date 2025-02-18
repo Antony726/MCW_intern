@@ -35,3 +35,6 @@ __SE_TEMPLATE_v1 seTemplate = __gen_SE_TEMPLATE_v1();
 ```
 
  ![alt text](image-4.png)
+
+ ## Flags
+ ![alt text](image-5.png)
