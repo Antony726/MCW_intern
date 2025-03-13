@@ -1,4 +1,32 @@
+/*******************************************************************************
+ **+--------------------------------------------------------------------------+**
+ **|                            ****                                          |**
+ **|                            ****                                          |**
+ **|                            ******o***                                    |**
+ **|                      ********_///_****                                   |**
+ **|                      ***** /_//_/ ****                                   |**
+ **|                       ** ** (__/ ****                                    |**
+ **|                           *********                                      |**
+ **|                            ****                                          |**
+ **|                            ***                                           |**
+ **|                                                                          |**
+ **|         Copyright (c) 2016 Texas Instruments Incorporated                |**
+ **|                        ALL RIGHTS RESERVED                               |**
+ **|                                                                          |**
+ **| Permission to use, copy, modify, or distribute this software,            |**
+ **| whether in part or in whole, for any purpose is forbidden without        |**
+ **| a signed licensing agreement and NDA from Texas Instruments              |**
+ **| Incorporated (TI).                                                       |**
+ **|                                                                          |**
+ **| TI makes no representation or warranties with respect to the             |**
+ **| performance of this computer program, and specifically disclaims         |**
+ **| any responsibility for any damages, special or consequential,            |**
+ **| connected with the use of this program.                                  |**
+ **|                                                                          |**
+ **+--------------------------------------------------------------------------+**
+ *******************************************************************************/
 
+// include MMALIB
 #include <mmalib.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,7 +57,9 @@ int main(){
    printf("Enter the value of K:");
    scanf("%d",&k);
 
-
+   // row = 4;
+   // col = 4;
+   // k = 4;
    int32_t arr_A[row][k];
    int32_t arr_B[k][col];
    int32_t out[row][col];
@@ -48,6 +78,22 @@ int main(){
       }
    }
 
+   // for(int i=0; i<row; i++){
+   //    for(int j=0; j<k; j++){
+   //       printf("%d | ",arr_A[i][j]);
+   //    }
+   //    printf("\n");
+   // }
+
+
+   // for(int i=0; i<k; i++){
+   //    for(int j=0; j<col; j++){
+   //       printf("%d | ",arr_B[i][j]);
+   //    }
+   //    printf("\n");
+   // }
+
+   
 
    for(int i=0; i<row; i++){
       for(int j=0; j<col; j++){
@@ -84,9 +130,7 @@ int main(){
    printf("________________________________________________________________________________________________________________");
 
 
-   struct timeval start, stop;
-   gettimeofday(&start, NULL);
-
+   
    
    MMALIB_LINALG_matrixMatrixMultiply_ixX_ixX_oxX_InitArgs    kerInitArgs;
    int32_t handleSize = MMALIB_LINALG_matrixMatrixMultiply_ixX_ixX_oxX_getHandleSize(&kerInitArgs);
@@ -104,6 +148,8 @@ int main(){
   
    src0_addr.data_type = MMALIB_INT32;
 
+   // printf("Matrix A: channels=%d, rows=%d, cols=%d, stride_y=%d, stride_z=%d, data=%d \n",
+   // src0_addr.dim_z, src0_addr.dim_y, src0_addr.dim_x, src0_addr.stride_y, src0_addr.stride_z, src0_addr.data_type);
    
    src1_addr.dim_x = k;
    src1_addr.dim_y = col;
@@ -140,20 +186,23 @@ int main(){
    }
    
    if(status_opt == MMALIB_SUCCESS){
-     
+      struct timeval start, stop;
+      gettimeofday(&start, NULL);
+      
+      
       status_opt = MMALIB_LINALG_matrixMatrixMultiply_ixX_ixX_oxX_exec(handle, arr_A, arr_B, out);
+      gettimeofday(&stop, NULL);
+    
+      double elapsed_timee = (stop.tv_sec - start.tv_sec) + (stop.tv_usec - start.tv_usec) / 1e6;
+       // cout<<stop.tv_sec<<" "<<start.tv_sec<<"\n"<<stop.tv_usec<<" "<<start.tv_usec;
+      double estimated_cyclees = elapsed_timee * CPU_FREQ;
+    
+      printf("\n Execution time of MMA_MULTIPLICATION: %f seconds\n", elapsed_timee);
+      printf("Estimated cycle count of MMA_MULTIPLICATION: %.0f cycles\n", estimated_cyclees);
+   
+      printf("-------------------------------------------------------------------------------------------------------------------\n");
    }
 
-   gettimeofday(&stop, NULL);
- 
-   double elapsed_timee = (stop.tv_sec - start.tv_sec) + (stop.tv_usec - start.tv_usec) / 1e6;
-    // cout<<stop.tv_sec<<" "<<start.tv_sec<<"\n"<<stop.tv_usec<<" "<<start.tv_usec;
-   double estimated_cyclees = elapsed_timee * CPU_FREQ;
- 
-   printf("\n Execution time of MMA_MULTIPLICATION: %f seconds\n", elapsed_timee);
-   printf("Estimated cycle count of MMA_MULTIPLICATION: %.0f cycles\n", estimated_cyclees);
-
-   printf("-------------------------------------------------------------------------------------------------------------------\n");
 
    
    for(int i=0; i<row; i++){
@@ -172,10 +221,19 @@ int main(){
 
    return 0;
 
- 
+   // printf("-------------------------------------------------------------------------------------------------------------------\n");
+
+
+   // for(int i=0; i<row; i++){
+   //    for(int j=0; j<col; j++){
+   //       printf("%d | ",out[i][j]);
+   //    }
+   //    printf("\n");
+   // }
+    
                
 
 
 
 
-}
+}  

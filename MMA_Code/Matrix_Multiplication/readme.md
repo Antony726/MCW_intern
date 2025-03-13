@@ -7,4 +7,4 @@
 
 # Comparision with normal Matrix Multiplication
 
-![alt text](image.png)
+![alt text](image-1.png)
