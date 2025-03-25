@@ -1,4 +1,4 @@
-# UDAM (Unified Direct Memory Access)
+# UDMA (Unified Direct Memory Access)
 
 # Packet oriented DMA
 <p>Packet-Oriented DMA is a type of Direct Memory Access (DMA) operation where the data transfer is structured in packets, Each packet includes a specific set of data along with additional control information (e.g., packet size, destination, and priority).<br> The DMA controller moves these packets efficiently between memory, peripherals, or external devices without involving the CPU.</p>
